@@ -9,28 +9,31 @@ function convertToRoman(num) {
     6: ['I', 1]
   };
 
-  if (num === 0) return ""; // Romans had no zero
+  if (num === 0) return "";
+
+  // extended list with subtractive rules included
+  const symbols = [
+    ["M", 1000],
+    ["CM", 900],
+    ["D", 500],
+    ["CD", 400],
+    ["C", 100],
+    ["XC", 90],
+    ["L", 50],
+    ["XL", 40],
+    ["X", 10],
+    ["IX", 9],
+    ["V", 5],
+    ["IV", 4],
+    ["I", 1]
+  ];
 
   let result = "";
 
-  while (num > 0) {
-    // Subtractive rules
-    if (num >= 900) { result += "CM"; num -= 900; }
-    else if (num >= 400) { result += "CD"; num -= 400; }
-    else if (num >= 90) { result += "XC"; num -= 90; }
-    else if (num >= 40) { result += "XL"; num -= 40; }
-    else if (num >= 9) { result += "IX"; num -= 9; }
-    else if (num >= 4) { result += "IV"; num -= 4; }
-    else {
-      // Greedy approach using only your obj
-      for (let i = 0; i <= 6; i++) {
-        let [symbol, value] = obj[i];
-        if (num >= value) {
-          result += symbol;
-          num -= value;
-          break;
-        }
-      }
+  for (let [symbol, value] of symbols) {
+    while (num >= value) {
+      result += symbol;
+      num -= value;
     }
   }
 
