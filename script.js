@@ -37,12 +37,6 @@ function convertToRoman(num) {
   return result;
 }
 
-// ✅ Tests
-console.log(convertToRoman(0));       // ""
-console.log(convertToRoman(36));      // XXXVI
-console.log(convertToRoman(944));     // CMXLIV
-console.log(convertToRoman(1994));    // MCMXCIV
-console.log(convertToRoman(100000));  // 'M' repeated 100 times
 
 // do not edit below this line
 module.exports = convertToRoman;
